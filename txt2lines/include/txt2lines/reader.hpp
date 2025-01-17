@@ -20,6 +20,7 @@ class Reader {
 
  public:
   Reader(const char* path_to_file, const char* skip_regex = R"(^\s*$)");
+  bool eof() const;
   MaybeLine read_line();
 };
 

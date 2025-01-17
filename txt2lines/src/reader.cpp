@@ -8,10 +8,14 @@ Reader::Reader(const char* path_to_file, const char* skip_regex)
     , _ifstream(path_to_file)
     , _line_counter(0) {}
 
+bool Reader::eof() const {
+  return _ifstream.eof();
+}
+
 MaybeLine Reader::read_line() {
   std::string content = "";
 
-  for (; not _ifstream.eof(); ++_line_counter) {
+  for (; not eof(); ++_line_counter) {
     std::getline(_ifstream, content, '\n');
     if (not std::regex_match(content, _skip_regex)) break;
   }
