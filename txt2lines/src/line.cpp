@@ -9,3 +9,7 @@ MaybeLine::operator bool() {
 Line::operator MaybeLine() {
   return MaybeLine{num, content};
 }
+
+Line::operator std::string() {
+  return content;
+}

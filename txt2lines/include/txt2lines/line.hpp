@@ -11,6 +11,7 @@ struct Line {
   std::size_t num;
   std::string content;
   operator MaybeLine();
+  operator std::string();
 };
 
 struct MaybeLine final : Line {
