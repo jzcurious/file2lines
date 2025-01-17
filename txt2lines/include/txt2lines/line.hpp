@@ -8,8 +8,8 @@ namespace t2l {
 struct MaybeLine;
 
 struct Line {
-  const std::size_t num;
-  const std::string content;
+  std::size_t num;
+  std::string content;
   operator MaybeLine();
 };
 
