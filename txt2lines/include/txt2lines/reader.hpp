@@ -22,8 +22,9 @@ class Reader {
   std::size_t _line_counter;
 
  public:
-  Reader(const char* path_to_file);
-  Reader(const char* path_to_file, const char* skip_regex);
+  Reader(const fs::path& path_to_file);
+  Reader(const fs::path& path_to_file, const std::regex& skip_regex);
+  Reader(const fs::path& path_to_file, const char* skip_regex);
   bool eof() const;
   MaybeLine read_line();
 };

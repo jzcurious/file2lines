@@ -2,19 +2,22 @@
 
 using namespace t2l;
 
-Reader::Reader(const char* path_to_file)
+Reader::Reader(const fs::path& path_to_file)
     : path_to_file(path_to_file)
     , skipping(false)
     , _skip_regex("")
     , _ifstream(path_to_file)
     , _line_counter(0) {}
 
-Reader::Reader(const char* path_to_file, const char* skip_regex)
+Reader::Reader(const fs::path& path_to_file, const std::regex& skip_regex)
     : path_to_file(path_to_file)
     , skipping(true)
     , _skip_regex(skip_regex)
     , _ifstream(path_to_file)
     , _line_counter(0) {}
+
+Reader::Reader(const fs::path& path_to_file, const char* skip_regex)
+    : Reader::Reader(path_to_file, std::regex(skip_regex)) {}
 
 bool Reader::eof() const {
   return _ifstream.eof();
