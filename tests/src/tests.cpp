@@ -6,30 +6,21 @@
 static const char* src_path = "../../assets/tests.udl";
 
 TEST(Reader, read_line) {
-  auto r1 = t2l::Reader(src_path);
-  auto r2 = t2l::Reader(src_path);
+  auto reader = t2l::Reader(src_path);
   auto istream = std::ifstream(src_path);
 
   std::vector<std::string> lines1;
   std::vector<std::string> lines2;
 
-  auto mline = t2l::MaybeLine{};
-
-  // TODO: conv to string
-  // TODO: eof()
-
-  do {
-    mline = r1.read_line();
+  for (t2l::MaybeLine mline; not reader.eof();) {
+    mline = reader.read_line();
     if (mline) lines1.push_back(mline.content);
   }
-  while (mline);
 
   auto ifstream = std::ifstream(src_path);
-  std::string string;
-
-  while (not ifstream.eof()) {
-    std::getline(ifstream, string, '\n');
-    if (not std::regex_match(string, std::regex(R"(^\s*$)"))) lines2.push_back(string);
+  for (std::string str; not ifstream.eof();) {
+    std::getline(ifstream, str, '\n');
+    if (not std::regex_match(str, std::regex(R"(^\s*$)"))) lines2.push_back(str);
   }
 
   EXPECT_EQ(lines1, lines2);
