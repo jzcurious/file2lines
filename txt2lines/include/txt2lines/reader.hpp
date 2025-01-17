@@ -12,9 +12,11 @@ namespace t2l {
 namespace fs = std::filesystem;
 
 class Reader {
- private:
+ public:
   const fs::path path_to_file;
-  const std::regex _skip_regex;
+  const std::regex skip_regex;
+
+ private:
   std::ifstream _ifstream;
   std::size_t _line_counter;
 
