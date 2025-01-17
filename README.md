@@ -3,7 +3,7 @@ A tiny library for line-by-line reading of text files
 
 ### Sample
 
-```
+```C++
 #include <iostream>
 #include <txt2lines/reader.hpp>
 
@@ -20,5 +20,4 @@ int main() {
   print_txt_with_enumeration("../../assets/tests.udl");
   return (0);
 }
-
 ```
