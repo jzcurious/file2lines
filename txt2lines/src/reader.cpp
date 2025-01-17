@@ -15,7 +15,8 @@ bool Reader::eof() const {
 MaybeLine Reader::read_line() {
   std::string content = "";
 
-  for (; not eof(); ++_line_counter) {
+  while (not eof()) {
+    ++_line_counter;
     std::getline(_ifstream, content, '\n');
     if (not std::regex_match(content, skip_regex)) break;
   }
