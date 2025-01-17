@@ -14,14 +14,16 @@ namespace fs = std::filesystem;
 class Reader {
  public:
   const fs::path path_to_file;
-  const std::regex skip_regex;
+  const bool skipping;
 
  private:
+  const std::regex _skip_regex;
   std::ifstream _ifstream;
   std::size_t _line_counter;
 
  public:
-  Reader(const char* path_to_file, const char* skip_regex = R"(^\s*$)");
+  Reader(const char* path_to_file);
+  Reader(const char* path_to_file, const char* skip_regex);
   bool eof() const;
   MaybeLine read_line();
 };

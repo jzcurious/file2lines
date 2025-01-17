@@ -3,7 +3,7 @@
 using namespace t2l;
 
 MaybeLine::operator bool() {
-  return content.size();
+  return content.size() or num;
 }
 
 Line::operator MaybeLine() {
